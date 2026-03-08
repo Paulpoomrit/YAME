@@ -1,5 +1,5 @@
 from enum import Enum
-
+import re
 
 class Feature(Enum):
     # --------- Group A: Features related to language, grammar and style --------- #
@@ -26,8 +26,18 @@ class Feature(Enum):
     SUMMARY = 19
 
 
-def extract_group_a(feature_type: Feature, total_num_words: int):
-    pass
+regex_dict: dict[Feature, str] = {
+    Feature.EMDASH: r"—",
+    Feature.EMOJI: r"/(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])/g",
+    Feature.BOLD: r"<(b|strong|i|em)>.*[^>]<\/(b|strong|i|em)>",
+    Feature.TITLE_CASE: r"^(?:[A-Z][^\s]*\s?)+$"
+}
+
+
+def extract_group_a(text: str, feature_type: Feature, total_num_words: int):
+    regex = regex_dict[feature_type]
+    match_list = re.findall(regex, text)
+    return len(match_list)
 
 
 
