@@ -38,6 +38,14 @@ regex_dict: dict[Feature, str] = {
 }
 
 
+ai_vocab = ["additionally","align with","boasts","bolstered",
+            "crucial","delve","emphasizing","enduring","enhance"
+            "fostering","garner","highlight","interplay","intricate",
+            "intricacies","key","landscape","meticulous","meticulously",
+            "pivotal","showcase","tapestry","testament","underscore"
+            "valuable","vibrant"]
+
+
 def count_all_words_in_list(text: str, words: list[str]):
     total_count: int = 0
 
