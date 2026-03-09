@@ -59,11 +59,11 @@ def count_all_words_in_list(text: str, words: list[str]):
 def extract_group_a(text: str, feature_type: Feature, total_num_words: int):
 
     if feature_type == Feature.VOCAB:
-        return count_all_words_in_list(text, ai_vocab)
+        return count_all_words_in_list(text, ai_vocab) / total_num_words
 
     regex = regex_dict[feature_type]
     match_list = re.findall(regex, text)
-    return len(match_list)
+    return len(match_list) / total_num_words
 
 
 
