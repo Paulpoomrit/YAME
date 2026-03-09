@@ -38,6 +38,17 @@ regex_dict: dict[Feature, str] = {
 }
 
 
+def count_all_words_in_list(text: str, words: list[str]):
+    total_count: int = 0
+
+    text = text.lower()
+    for word in words:
+        word = word.lower()
+        match_list = re.findall(word, text)
+        total_count += len(match_list)
+
+    return
+
 def extract_group_a(text: str, feature_type: Feature, total_num_words: int):
     regex = regex_dict[feature_type]
     match_list = re.findall(regex, text)
