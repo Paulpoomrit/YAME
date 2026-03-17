@@ -1,5 +1,6 @@
 from enum import Enum
 import re
+import language_tool_python
 
 class Feature(Enum):
     # --------- Group A: Features related to language, grammar and style --------- #
@@ -14,15 +15,15 @@ class Feature(Enum):
     GRAMMAR = 9
     VOCAB = 10
     # ------------------- Group B: Features related to content ------------------- #
-    NEG_PARALLELISM = 11
-    RULE_OF_THREE = 12
-    BASIC_COPULATIVE = 13
-    ELEG_VARIATION = 14
+    NEG_PARALLELISM = 11 #TODO
+    RULE_OF_THREE = 12 #TODO
+    BASIC_COPULATIVE = 13 #TODO
+    ELEG_VARIATION = 14 #TODO
     # ------------------------- Group C: Binary features ------------------------- #
-    SUBJECT_LINE = 15
-    COMMUNICATION = 16
-    KNOWLEDGE_CUTOFF = 17
-    SUMMARY = 18
+    SUBJECT_LINE = 15 #TODO
+    COMMUNICATION = 16 #TODO
+    KNOWLEDGE_CUTOFF = 17 #TODO
+    SUMMARY = 18 #TODO
 
 
 regex_dict: dict[Feature, str] = {
@@ -54,7 +55,14 @@ def count_all_words_in_list(text: str, words: list[str]):
         match_list = re.findall(word, text)
         total_count += len(match_list)
 
-    return
+    return total_count
+
+
+def count_all_grammartical_mistakes(text: str) -> int:
+    with language_tool_python.LanguageTool("en-US") as tool:
+        matches = tool.check(text)
+        return len(matches)
+    return -1
 
 def extract_group_a(text: str, feature_type: Feature, total_num_words: int):
 
@@ -74,4 +82,6 @@ def extract_features(document_path: str):
            print('-----')
 
 ## Test
-extract_features("/Users/paulpoomrit/1_SFU/8_Spring_2026/LING450_CompLing/LING450_TermProject/data/coca-samples-text/text_acad.txt")
+#extract_features("/Users/paulpoomrit/1_SFU/8_Spring_2026/LING450_CompLing/LING450_TermProject/data/coca-samples-text/text_acad.txt")
+print(count_all_grammartical_mistakes("I is Paul."))
+# print('yo')
