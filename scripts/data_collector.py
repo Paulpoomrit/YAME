@@ -1,36 +1,88 @@
 import csv
-from openai import OpenAI
+from transformers import pipeline
+import torch
+from enum import Enum
+
+
+class Model(Enum):
+    GPT_OSS = 1
 
 
 _fields = ['text', 'label']
 _data_dict: list[dict[str, str]] = []
 _filename: str = "/Users/paulpoomrit/1_SFU/8_Spring_2026/LING450_CompLing/LING450_TermProject/processed_csv/data.csv"
-_open_ai_key = "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"
 _ai_prompt = "Consider the following text and imagine you were a human prompter, trying to reverse engineer the prompt of such text. Provide the prompt: "
 
 
-client = OpenAI(api_key=_open_ai_key)
+def get_ai_prompt_from_gpt_oss(human_text: str) -> str:
+    model_id = "openai/gpt-oss-120b"
 
-
-def get_ai_prompt(human_text: str) -> str:
-    messages = [{"role": "system", "content":
-                  "You are a intelligent assistant."}]
-    messages.append(
-        {"role": "user", "content": _ai_prompt+human_text},
+    pipe = pipeline(
+        "text-generation",
+        model=model_id,
+        torch_dtype="auto",
+        device_map="auto",
     )
-    chat = client.chat.completions.create(model="gpt-3.5-turbo", messages=messages)
-    return chat.choices[0].message.content
+
+    messages = [
+        {"role": "user", "content": _ai_prompt + human_text},
+    ]
+
+    outputs = pipe(
+        messages
+    )
+
+    return outputs[0]["generated_text"][-1]
 
 
-def get_ai_counterpart(human_text: str) -> str:
+def get_ai_prompt(human_text: str, model_enum = Model) -> str:
+
+    prompt = ""
+
+    match model_enum:
+        case Model.GPT_OSS:
+            prompt = get_ai_prompt_from_gpt_oss(human_text)
+        case _:
+            prompt = get_ai_prompt_from_gpt_oss(human_text)
+
+    return prompt
+
+
+def get_ai_counterpart_from_gpt_oss(human_text: str) -> str:
     prompt = get_ai_prompt(human_text)
-    messages = [{"role": "system", "content":
-                  "You are a intelligent assistant."}]
-    messages.append(
-        {"role": "user", "content": prompt},
+
+    model_id = "openai/gpt-oss-120b"
+
+    pipe = pipeline(
+        "text-generation",
+        model=model_id,
+        torch_dtype="auto",
+        device_map="auto",
     )
-    chat = client.chat.completions.create(model="gpt-3.5-turbo", messages=messages)
-    return chat.choices[0].message.content
+
+    messages = [
+        {"role": "user", "content": prompt},
+    ]
+
+    outputs = pipe(
+        messages
+    )
+
+    return outputs[0]["generated_text"][-1]
+
+
+
+def get_ai_counterpart(human_text: str, model_enum = Model) -> str:
+
+    ai_text = ""
+
+    match model_enum:
+        case Model.GPT_OSS:
+            ai_text = get_ai_counterpart(human_text)
+        case _:
+            ai_text = get_ai_counterpart(human_text)
+
+    return ai_text
 
 
 def process_doc(document_path: str):
@@ -46,7 +98,8 @@ def process_doc(document_path: str):
             _data_dict.append(human_dict)
 
             ai_dict: dict[str, str] = {}
-            ai_dict['text'] = "yo" # TODO: replace with get_ai_counterpart(line)
+            # TODO: replace with get_ai_counterpart(line)
+            ai_dict['text'] = get_ai_counterpart(line)
             ai_dict['label'] = "AI"
             _data_dict.append(ai_dict)
 
@@ -64,4 +117,4 @@ def main():
         writer.writerows(_data_dict)
 
 
-main()
+# main()
