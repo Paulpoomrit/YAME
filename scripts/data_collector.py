@@ -15,7 +15,7 @@ _ai_prompt = "Consider the following text and imagine you were a human prompter,
 
 
 def get_ai_prompt_from_gpt_oss(human_text: str) -> str:
-    model_id = "openai/gpt-oss-120b"
+    model_id = "openai/gpt-oss-20b"
 
     pipe = pipeline(
         "text-generation",
@@ -51,7 +51,7 @@ def get_ai_prompt(human_text: str, model_enum = Model) -> str:
 def get_ai_counterpart_from_gpt_oss(human_text: str) -> str:
     prompt = get_ai_prompt(human_text)
 
-    model_id = "openai/gpt-oss-120b"
+    model_id = "openai/gpt-oss-20b"
 
     pipe = pipeline(
         "text-generation",
@@ -69,7 +69,6 @@ def get_ai_counterpart_from_gpt_oss(human_text: str) -> str:
     )
 
     return outputs[0]["generated_text"][-1]
-
 
 
 def get_ai_counterpart(human_text: str, model_enum = Model) -> str:
@@ -118,3 +117,5 @@ def main():
 
 
 # main()
+print(get_ai_prompt("We live in capitalism, its power seems inescapable — but then, so did the divine right of kings. Any human power can be resisted and changed by human beings. Resistance and change often begin in art. Very often in our art, the art of words.")
+)
