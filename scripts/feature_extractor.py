@@ -2,9 +2,15 @@ from enum import Enum
 import re
 import language_tool_python
 import nltk
+import numpy as np
 nltk.download('punkt_tab')
 nltk.download('averaged_perceptron_tagger_eng')
 nltk.download('universal_tagset')
+
+# for word2vec
+import gensim.downloader as api
+word_2_vec = api.load("glove-wiki-gigaword-50")
+from scipy import spatial
 
 class Feature(Enum):
     # --------- Group A: Features related to language, grammar and style --------- #
@@ -21,7 +27,7 @@ class Feature(Enum):
     # ------------------- Group B: Features related to content ------------------- #
     NEG_PARALLELISM = 11
     RULE_OF_THREE = 12
-    BASIC_COPULATIVE = 13 #TODO
+    BASIC_COPULATIVE = 13
     ELEG_VARIATION = 14 #TODO
     # ------------------------- Group C: Binary features ------------------------- #
     SUBJECT_LINE = 15 #TODO
@@ -117,12 +123,12 @@ def rule_of_three_ratio(text: str) -> float:
     return total_rule_of_three_sentences/total_num_senteces
 
 
-def basic_copulative(text: str) -> float:
+def basic_copulative_ratio(text: str) -> float:
     """  Returns the ratio of basic copulative words
     to the number of all white-space separated tokens. """
-    
-    work_tokens = nltk.word_tokenize(text)
-    total_num_tokens = len(work_tokens)
+
+    word_tokens = nltk.word_tokenize(text)
+    total_num_tokens = len(word_tokens)
 
     if total_num_tokens == 0:
         return 0
@@ -136,6 +142,22 @@ def basic_copulative(text: str) -> float:
 
     return num_basic_cop/total_num_tokens
 
+
+def eleg_variation_ratio(text: str) -> str:
+
+    words = nltk.word_tokenize(text)
+    word_matrix = []
+
+    for word in words:
+        word = word.lower()
+        word_vec = word_2_vec[word] # grab word vector
+        word_matrix.append(word_vec)
+
+    # Computes the cosine distance between each pair of the word vector
+    pairwise_dist = spatial.distance.pdist(word_matrix, metric='cosine')
+    avg = np.average(pairwise_dist)
+
+    return avg
 
 def extract_group_a(text: str, feature_type: Feature, total_num_words: int):
 
@@ -161,5 +183,8 @@ def extract_features(document_path: str):
 # print(negative_parallelism_ratio("a Not just x but y. ain't x rather k. That’s not just a sourcing issue—it's a systemic bias. The issue here isn't just sourcing—it's framing. The issue here is not just sourcing—it's framing. Constitutes not only a work of self-representation, but a visual document. huh"))
 
 # print(rule_of_three_ratio("This is so insane, right brother? The Amaze Conference brings together global SEO professionals, marketing experts, and growth hackers to discuss the latest trends in digital marketing. The event features keynote sessions, panel discussions, and networking opportunities."))
-print(basic_copulative("Gallery 825 on [[La Cienega Boulevard]], which was purchased in 1958, is LAAA's exhibition arm for [[contemporary art]]. There are four individual gallery spaces[...]"))
-print(basic_copulative("Gallery 825 on [[La Cienega Boulevard]] serves as LAAA's exhibition space for contemporary art. The gallery features four separate spaces[...]"))
+# print(basic_copulative("Gallery 825 on [[La Cienega Boulevard]], which was purchased in 1958, is LAAA's exhibition arm for [[contemporary art]]. There are four individual gallery spaces[...]"))
+# print(basic_copulative("Gallery 825 on [[La Cienega Boulevard]] serves as LAAA's exhibition space for contemporary art. The gallery features four separate spaces[...]"))
+
+# print(eleg_variation_ratio("animal creature beast"))
+# print(eleg_variation_ratio("Vierny, after a visit in Moscow in the early 1970’s, committed to supporting artists resisting the constraints of socialist realism and discovered Yankilevskly, among others such as Ilya Kabakov and Erik Bulatov. In the challenging climate of Soviet artistic constraints, Yankilevsky, alongside other non-conformist artists, faced obstacles in expressing their creativity freely. Dina Vierny, recognizing the immense talent and the struggle these artists endured, played a pivotal role in aiding their artistic aspirations. [...]"))
