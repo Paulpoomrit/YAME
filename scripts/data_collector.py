@@ -13,6 +13,7 @@ _fields = ['text', 'label']
 _data_dict: list[dict[str, str]] = []
 _filename: str = "/Users/paulpoomrit/1_SFU/8_Spring_2026/LING450_CompLing/LING450_TermProject/processed_csv/data.csv"
 _ai_prompt = "Consider the following text and imagine you were a human prompter, trying to reverse engineer the prompt of such text. Provide the prompt: "
+_format_prompt = "Generate text using HTML tags for formatting."
 
 
 def get_ai_prompt_from_transfomers(human_text: str, model_id: str) -> str:
@@ -41,7 +42,7 @@ def get_ai_prompt_from_transfomers(human_text: str, model_id: str) -> str:
         messages
     )
 
-    return outputs[0]["generated_text"][-1]
+    return outputs[0]["generated_text"][-1] + _format_prompt
 
 
 def get_ai_prompt(human_text: str, model_enum = Model) -> str:
