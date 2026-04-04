@@ -220,6 +220,8 @@ def extract_features(document_path: str):
 # print(eleg_variation_ratio("Vierny, after a visit in Moscow in the early 1970’s, committed to supporting artists resisting the constraints of socialist realism and discovered Yankilevskly, among others such as Ilya Kabakov and Erik Bulatov. In the challenging climate of Soviet artistic constraints, Yankilevsky, alongside other non-conformist artists, faced obstacles in expressing their creativity freely. Dina Vierny, recognizing the immense talent and the struggle these artists endured, played a pivotal role in aiding their artistic aspirations. [...]"))
 
 
-print(is_there_subject_line(
-    "Subject: Request for Permission to Edit Wikipedia Article"))
-print(is_there_subject_line("Request for Permission to Edit Wikipedia Article"))
+# print(is_there_the_following_pattern(regex_dict[Feature.SUBJECT_LINE], "Subject: Request for Permission to Edit Wikipedia Article"))
+# print(is_there_the_following_pattern(regex_dict[Feature.SUBJECT_LINE], "Request for Permission to Edit Wikipedia Article"))
+
+
+print(if_words_exist("the educational and training trajectory for nurse scientists typically involves a progression from a master's degree in nursing to a Doctor of Philosophy in Nursing, followed by postdoctoral training in nursing research. This structured pathway ensures that nurse scientists acquire the necessary knowledge and skills to engage in rigorous research and contribute meaningfully to the advancement of nursing science.", summary_words))
