@@ -16,7 +16,7 @@ _ai_prompt = "Consider the following text and imagine you were a human prompter,
 _format_prompt = "Generate text using HTML tags for formatting."
 
 
-def get_ai_prompt_from_transfomers(human_text: str, model_id: str) -> str:
+def get_ai_prompt_from_transformers(human_text: str, model_id: str) -> str:
 
     model = AutoModelForCausalLM.from_pretrained(
         model_id,
@@ -49,11 +49,11 @@ def get_ai_prompt(human_text: str, model_enum = Model) -> str:
 
     match model_enum:
         case Model.GPT_OSS:
-            return get_ai_prompt_from_transfomers(human_text, "openai/gpt-oss-20b")
+            return get_ai_prompt_from_transformers(human_text, "openai/gpt-oss-20b")
         case Model.PHI_THREE_MINI:
-            return get_ai_prompt_from_transfomers(human_text, "microsoft/Phi-3-mini-4k-instruct")
+            return get_ai_prompt_from_transformers(human_text, "microsoft/Phi-3-mini-4k-instruct")
         case _:
-            return get_ai_prompt_from_transfomers(human_text, "microsoft/Phi-3-mini-4k-instruct")
+            return get_ai_prompt_from_transformers(human_text, "microsoft/Phi-3-mini-4k-instruct")
 
 
 def get_ai_counterpart_from_transformers(human_text: str, model_id: str) -> str:
