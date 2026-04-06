@@ -8,6 +8,7 @@ from sklearn.metrics import confusion_matrix, accuracy_score, precision_score, r
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import roc_curve, roc_auc_score
 import matplotlib.pyplot as plt
+import sys
 
 data_path = 'data/test_data/w_features.tsv'
 feature_names = ["emdash",
@@ -28,6 +29,7 @@ feature_names = ["emdash",
                  "summary"
                  ]
 
+
 def train_model(df: pd.DataFrame, ablated_feature: str):
 
     feature_list = feature_names
@@ -39,12 +41,10 @@ def train_model(df: pd.DataFrame, ablated_feature: str):
     y = df['label']
     X = df[feature_list].values
 
-
     X_train, X_test, y_train, y_test = train_test_split(X, y,
                                                         test_size=0.2,
                                                         random_state=104,
                                                         shuffle=True)
-
 
     model = RandomForestClassifier(
         n_estimators=500, max_leaf_nodes=16, n_jobs=-1, random_state=42)
@@ -91,14 +91,14 @@ def train_model(df: pd.DataFrame, ablated_feature: str):
 
     print("\n---Feature importance---\n")
     for score, name in zip(model.feature_importances_, df.columns):
-        print(f"| {name} | {round(score,2)} |")
+        print(f"| {name} | {round(score, 2)} |")
     print("\n------------------------\n")
 
     # Visualize tree
     dot_file_path = f"results/{feature}/yame_wout_{feature}.dot"
     export_graphviz(
         model,
-        out_file= dot_file_path,
+        out_file=dot_file_path,
         feature_names=feature_list,
         class_names={'human', 'AI'},
         filled=True,
@@ -107,21 +107,20 @@ def train_model(df: pd.DataFrame, ablated_feature: str):
     )
 
 
+def main():
+    with open('results.txt', 'w') as sys.stdout:
+        df = pd.read_csv(data_path, sep='\t', index_col=False)
+        df = df.dropna()
 
-df = pd.read_csv(data_path, sep='\t', index_col=False)
-df = df.dropna()
+        print("\n----------------------------------------\n")
+        print(f"All features")
+        train_model(df, 'none')
+        print("\n----------------------------------------\n")
 
-print("\n----------------------------------------\n")
-print(f"All features")
-train_model(df, 'none')
-print("\n----------------------------------------\n")
-
-
-for feature in feature_names:
-    print("\n----------------------------------------\n")
-    print(f"Ablated feature: {feature}")
-    ablated_df = df.copy()
-    ablated_df = ablated_df.drop(feature, axis=1)
-    train_model(ablated_df, feature)
-    print("\n----------------------------------------\n")
-
+        for feature in feature_names:
+            print("\n----------------------------------------\n")
+            print(f"Ablated feature: {feature}")
+            ablated_df = df.copy()
+            ablated_df = ablated_df.drop(feature, axis=1)
+            train_model(ablated_df, feature)
+            print("\n----------------------------------------\n")
