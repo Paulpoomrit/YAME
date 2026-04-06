@@ -186,7 +186,7 @@ def count_all_list(text: str) -> int:
     numex = r"(?:^(\d{1,2}\.)+\d{0,2})|(?:^-)"
     rex = re.compile(numex,flags=re.I|re.M)
     list_arr = rex.findall(text)
-    print(list_arr)
+    # print(list_arr)
     return len(list_arr)
 
 
@@ -348,3 +348,5 @@ def extract_features(text: str) -> np.array:
 # Instructions:
 
 # 1. In a large bowl, combine the chopped on'''))
+
+#print(count_all_list('@@104730230 <h> Mandeep gets H&amp;UDD addl charge , JKAS officers shifted <p> Excelsior Correspondent JAMMU , Dec 31 : The Government today ordered that Mandeep Kour , Commissioner/ Secretary Rural Development Department &amp; Panchayati Raj shall hold the charge of the post of Administrative Secretary , Housing and Urban Development Department in addition to her own duties , till further orders . Meanwhile , Owais Mushtaq , Assistant Commissioner Panchayat , Pulwama has been transferred and posted as Project Officer , Wage Employment ( ACD ) , Kupwara , against an available vacancy . Mohammad Ashraf , General Manager , DIC , Kishtwar was transferred and posted as Sub-Divisional Magistrate , Marwah , against an available vacancy . He shall also hold the charge of the posts of Sub-Registrar , Marwah and General Manager , DIC , Kishtwar , in addition to his own duties , till further orders . Nagesh Singh , awaiting orders of adjustment in the General Administration Department has been posted as Deputy District Election Officer , Kathua , vtu against an available vacancy . Hamidullah Mir , Tehsildar , Zainapora , was transferred and posted as Deputy District Election Officer , Kupwara , against an @ @ @ @ @ @ @ @ @ @ Officer , Udhampur , shall hold the charge of the post of Collector , Land Acquisition ( Defence ) , Udhampur , in addition to his own duties till further orders .'))

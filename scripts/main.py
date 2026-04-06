@@ -56,36 +56,32 @@ def train_model(df: pd.DataFrame, ablated_feature: str):
 
     # # Confusion Matrix
     cm = confusion_matrix(y_test, y_pred)
-    # Accuracy
     accuracy = accuracy_score(y_test, y_pred)
-    # Precision
     precision = precision_score(y_test, y_pred, pos_label="AI")
-    # Recall
     recall = recall_score(y_test, y_pred, pos_label="AI")
-    # F1-Score
     f1 = f1_score(y_test, y_pred, pos_label="AI")
-    # # ROC Curve and AUC
     fpr, tpr, thresholds = roc_curve(y_test, y_pred_prob, pos_label="AI")
     roc_auc = roc_auc_score(y_test, y_pred_prob)
 
-    # # # Plot the ROC curve
-    # # plt.plot(fpr, tpr, label='ROC curve (area = %0.2f)' % roc_auc)
-    # # # roc curve for tpr = fpr
-    # # plt.plot([0, 1], [0, 1], 'k--', label='Random classifier')
-    # # plt.xlabel('False Positive Rate')
-    # # plt.ylabel('True Positive Rate')
-    # # plt.title('ROC Curve')
-    # # plt.legend(loc="lower right")
+    # Plot the ROC curve
+    plt.plot(fpr, tpr, label='ROC curve (area = %0.2f)' % roc_auc)
+    # roc curve for tpr = fpr
+    plt.plot([0, 1], [0, 1], 'k--', label='Random classifier')
+    plt.xlabel('False Positive Rate')
+    plt.ylabel('True Positive Rate')
+    plt.title('ROC Curve')
+    plt.legend(loc="lower right")
+    plt.savefig(f"results/{feature}/yame_wout_{feature}_auroc.png")
     # # plt.show()
 
-    # # # Plot the predicted class probabilities
-    # # plt.hist(y_pred_prob, bins=10)
-    # # plt.xlim(0, 1)
-    # # plt.title('Histogram of predicted probabilities')
-    # # plt.xlabel('Predicted probability of AI')
-    # # plt.ylabel('Frequency')
+    # Plot the predicted class probabilities
+    plt.hist(y_pred_prob, bins=10)
+    plt.xlim(0, 1)
+    plt.title('Histogram of predicted probabilities')
+    plt.xlabel('Predicted probability of text being labelled "AI"')
+    plt.ylabel('Frequency')
+    plt.savefig(f"results/{feature}/yame_wout_{feature}_pred_prob.png")
     # # plt.show()
-
 
     print(f"Accuracy:  {accuracy:.2f}")
     print(f"Precision: {precision:.2f}")
@@ -98,6 +94,17 @@ def train_model(df: pd.DataFrame, ablated_feature: str):
         print(f"| {name} | {round(score,2)} |")
     print("\n------------------------\n")
 
+    # Visualize tree
+    dot_file_path = f"results/{feature}/yame_wout_{feature}.dot"
+    export_graphviz(
+        model,
+        out_file= dot_file_path,
+        feature_names=feature_list,
+        class_names={'human', 'AI'},
+        filled=True,
+        rounded=True,
+        special_characters=True
+    )
 
 
 
