@@ -28,7 +28,8 @@ def clean_and_convert_to_tsv(csv_path: str, dest_path: str) -> None:
 
 def extract_features_and_save(data_path: str, dest_path: str) -> None:
 
-    df = pd.read_csv(data_path, sep='\t', index_col=False)
+    #df = pd.read_csv(data_path, sep='\t', index_col=False) # for tsv
+    df = pd.read_csv(data_path, index_col=False)
     # print(df['text'])
 
     feature_vectors = []
@@ -84,4 +85,4 @@ def get_feature_vectors(data_path: str) -> pd.DataFrame:
 
 
 #clean_and_convert_to_tsv('data/test_data/test_corrupt.csv', 'data/test_data/test_not_corrupt.tsv')
-extract_features_and_save('data/test_data/test_not_corrupt.tsv', 'data/test_data/w_features.tsv')
+extract_features_and_save('data/now_data_subset/now_data_subset.csv', 'data/now_data_subset/now_data_subset_w_features.csv')
