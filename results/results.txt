@@ -2,31 +2,40 @@
 ----------------------------------------
 
 All features
-Accuracy:  0.99
+Accuracy:  1.00
 Precision: 1.00
-Recall:    0.99
-F1 Score:  0.99
+Recall:    1.00
+F1 Score:  1.00
 AUROC:  1.00
+              precision    recall  f1-score   support
+
+          AI       1.00      1.00      1.00        97
+           H       1.00      1.00      1.00        96
+
+    accuracy                           1.00       193
+   macro avg       1.00      1.00      1.00       193
+weighted avg       1.00      1.00      1.00       193
+
 
 ---Feature importance---
 
              Feature  Gini Importance
-8            grammar         0.493071
-13    eleg_variation         0.217562
-11     rule_of_three         0.136567
-10   neg_parallelism         0.054453
-0             emdash         0.031886
-3         title_case         0.027398
-4               list         0.026892
-9              vocab         0.010809
-15           summary         0.000590
-14      subject_line         0.000454
-2               bold         0.000320
+8            grammar         0.476474
+13    eleg_variation         0.212130
+11     rule_of_three         0.165586
+10   neg_parallelism         0.060501
+4               list         0.023788
+12  basic_copulative         0.016508
+3         title_case         0.016401
+9              vocab         0.013361
+0             emdash         0.011211
+2               bold         0.002364
+14      subject_line         0.001552
+7           template         0.000120
+15           summary         0.000004
 1              emoji         0.000000
 5    curly_quotation         0.000000
 6              table         0.000000
-7           template         0.000000
-12  basic_copulative         0.000000
 
 ------------------------
 
@@ -38,30 +47,39 @@ AUROC:  1.00
 
 Ablated feature: emdash
 removing: emdash
-Accuracy:  0.97
+Accuracy:  1.00
 Precision: 1.00
-Recall:    0.95
-F1 Score:  0.97
+Recall:    1.00
+F1 Score:  1.00
 AUROC:  1.00
+              precision    recall  f1-score   support
+
+          AI       1.00      1.00      1.00        97
+           H       1.00      1.00      1.00        96
+
+    accuracy                           1.00       193
+   macro avg       1.00      1.00      1.00       193
+weighted avg       1.00      1.00      1.00       193
+
 
 ---Feature importance---
 
              Feature  Gini Importance
-10     rule_of_three         0.265806
-7            grammar         0.263166
-12    eleg_variation         0.258995
-9    neg_parallelism         0.069643
-3               list         0.060558
-8              vocab         0.047907
-2         title_case         0.023942
-13      subject_line         0.005766
-14           summary         0.004120
-0              emoji         0.000098
-1               bold         0.000000
+7            grammar         0.326913
+12    eleg_variation         0.246522
+10     rule_of_three         0.203494
+9    neg_parallelism         0.076356
+11  basic_copulative         0.042226
+3               list         0.040244
+8              vocab         0.030074
+2         title_case         0.025022
+13      subject_line         0.003683
+1               bold         0.003547
+14           summary         0.001920
+0              emoji         0.000000
 4    curly_quotation         0.000000
 5              table         0.000000
 6           template         0.000000
-11  basic_copulative         0.000000
 
 ------------------------
 
@@ -73,30 +91,39 @@ AUROC:  1.00
 
 Ablated feature: emoji
 removing: emoji
-Accuracy:  0.97
+Accuracy:  1.00
 Precision: 1.00
-Recall:    0.94
-F1 Score:  0.97
+Recall:    1.00
+F1 Score:  1.00
 AUROC:  1.00
+              precision    recall  f1-score   support
+
+          AI       1.00      1.00      1.00        97
+           H       1.00      1.00      1.00        96
+
+    accuracy                           1.00       193
+   macro avg       1.00      1.00      1.00       193
+weighted avg       1.00      1.00      1.00       193
+
 
 ---Feature importance---
 
              Feature  Gini Importance
-10     rule_of_three         0.286768
-7            grammar         0.264884
-12    eleg_variation         0.209441
-9    neg_parallelism         0.081451
-3               list         0.052616
-0             emdash         0.040763
-8              vocab         0.030976
-2         title_case         0.025164
-13      subject_line         0.004355
-14           summary         0.002637
-1               bold         0.000945
+7            grammar         0.309282
+12    eleg_variation         0.230887
+10     rule_of_three         0.222789
+9    neg_parallelism         0.086873
+3               list         0.039610
+11  basic_copulative         0.033530
+2         title_case         0.028817
+0             emdash         0.024709
+8              vocab         0.016953
+1               bold         0.002674
+13      subject_line         0.001992
+14           summary         0.001885
 4    curly_quotation         0.000000
 5              table         0.000000
 6           template         0.000000
-11  basic_copulative         0.000000
 
 ------------------------
 
@@ -108,30 +135,39 @@ AUROC:  1.00
 
 Ablated feature: bold
 removing: bold
-Accuracy:  0.97
+Accuracy:  1.00
 Precision: 1.00
-Recall:    0.94
-F1 Score:  0.97
+Recall:    1.00
+F1 Score:  1.00
 AUROC:  1.00
+              precision    recall  f1-score   support
+
+          AI       1.00      1.00      1.00        97
+           H       1.00      1.00      1.00        96
+
+    accuracy                           1.00       193
+   macro avg       1.00      1.00      1.00       193
+weighted avg       1.00      1.00      1.00       193
+
 
 ---Feature importance---
 
              Feature  Gini Importance
-10     rule_of_three         0.293178
-7            grammar         0.254780
-12    eleg_variation         0.221405
-9    neg_parallelism         0.075881
-3               list         0.051948
-0             emdash         0.040547
-8              vocab         0.029932
-2         title_case         0.025333
-13      subject_line         0.004355
-14           summary         0.002639
-1              emoji         0.000000
+7            grammar         0.312247
+12    eleg_variation         0.233435
+10     rule_of_three         0.232370
+9    neg_parallelism         0.079315
+3               list         0.038505
+11  basic_copulative         0.037057
+0             emdash         0.022713
+2         title_case         0.021086
+8              vocab         0.018175
+13      subject_line         0.002692
+14           summary         0.002356
+1              emoji         0.000050
 4    curly_quotation         0.000000
 5              table         0.000000
 6           template         0.000000
-11  basic_copulative         0.000000
 
 ------------------------
 
@@ -143,30 +179,39 @@ AUROC:  1.00
 
 Ablated feature: title_case
 removing: title_case
-Accuracy:  0.97
+Accuracy:  1.00
 Precision: 1.00
-Recall:    0.94
-F1 Score:  0.97
+Recall:    1.00
+F1 Score:  1.00
 AUROC:  1.00
+              precision    recall  f1-score   support
+
+          AI       1.00      1.00      1.00        97
+           H       1.00      1.00      1.00        96
+
+    accuracy                           1.00       193
+   macro avg       1.00      1.00      1.00       193
+weighted avg       1.00      1.00      1.00       193
+
 
 ---Feature importance---
 
              Feature  Gini Importance
-10     rule_of_three         0.300001
-7            grammar         0.264281
-12    eleg_variation         0.208993
-9    neg_parallelism         0.077406
-3               list         0.067719
-8              vocab         0.035415
-0             emdash         0.034505
-13      subject_line         0.006092
-2               bold         0.003912
-14           summary         0.001677
-1              emoji         0.000000
+7            grammar         0.326974
+10     rule_of_three         0.233757
+12    eleg_variation         0.210467
+9    neg_parallelism         0.077191
+3               list         0.042125
+11  basic_copulative         0.042002
+8              vocab         0.031954
+0             emdash         0.021074
+2               bold         0.010706
+13      subject_line         0.002735
+14           summary         0.000966
+1              emoji         0.000050
 4    curly_quotation         0.000000
 5              table         0.000000
 6           template         0.000000
-11  basic_copulative         0.000000
 
 ------------------------
 
@@ -178,30 +223,39 @@ AUROC:  1.00
 
 Ablated feature: list
 removing: list
-Accuracy:  0.99
+Accuracy:  1.00
 Precision: 1.00
-Recall:    0.99
-F1 Score:  0.99
+Recall:    1.00
+F1 Score:  1.00
 AUROC:  1.00
+              precision    recall  f1-score   support
+
+          AI       1.00      1.00      1.00        97
+           H       1.00      1.00      1.00        96
+
+    accuracy                           1.00       193
+   macro avg       1.00      1.00      1.00       193
+weighted avg       1.00      1.00      1.00       193
+
 
 ---Feature importance---
 
              Feature  Gini Importance
-7            grammar         0.303158
-10     rule_of_three         0.253527
-12    eleg_variation         0.194734
-9    neg_parallelism         0.092043
-3         title_case         0.065851
-0             emdash         0.044197
-8              vocab         0.033494
-13      subject_line         0.007378
-2               bold         0.003928
-14           summary         0.001690
-1              emoji         0.000000
+7            grammar         0.352863
+12    eleg_variation         0.219899
+10     rule_of_three         0.215535
+9    neg_parallelism         0.074507
+11  basic_copulative         0.044817
+3         title_case         0.033239
+0             emdash         0.025044
+8              vocab         0.020514
+2               bold         0.010173
+13      subject_line         0.002629
+14           summary         0.000730
+1              emoji         0.000050
 4    curly_quotation         0.000000
 5              table         0.000000
 6           template         0.000000
-11  basic_copulative         0.000000
 
 ------------------------
 
@@ -218,25 +272,34 @@ Precision: 1.00
 Recall:    0.99
 F1 Score:  0.99
 AUROC:  1.00
+              precision    recall  f1-score   support
+
+          AI       0.99      1.00      0.99        96
+           H       1.00      0.99      0.99        97
+
+    accuracy                           0.99       193
+   macro avg       0.99      0.99      0.99       193
+weighted avg       0.99      0.99      0.99       193
+
 
 ---Feature importance---
 
              Feature  Gini Importance
-7            grammar         0.356698
-10     rule_of_three         0.268089
-12    eleg_variation         0.168448
-9    neg_parallelism         0.091797
-0             emdash         0.042238
-3         title_case         0.041245
-8              vocab         0.016024
-4               list         0.008095
-2               bold         0.003643
-13      subject_line         0.002006
-14           summary         0.001718
+7            grammar         0.353771
+12    eleg_variation         0.245780
+10     rule_of_three         0.201668
+9    neg_parallelism         0.085387
+3         title_case         0.030040
+0             emdash         0.026643
+4               list         0.016226
+11  basic_copulative         0.015517
+8              vocab         0.012346
+2               bold         0.010402
+13      subject_line         0.001783
+14           summary         0.000438
 1              emoji         0.000000
 5              table         0.000000
 6           template         0.000000
-11  basic_copulative         0.000000
 
 ------------------------
 
@@ -253,25 +316,34 @@ Precision: 1.00
 Recall:    0.99
 F1 Score:  0.99
 AUROC:  1.00
+              precision    recall  f1-score   support
+
+          AI       0.99      1.00      0.99        96
+           H       1.00      0.99      0.99        97
+
+    accuracy                           0.99       193
+   macro avg       0.99      0.99      0.99       193
+weighted avg       0.99      0.99      0.99       193
+
 
 ---Feature importance---
 
              Feature  Gini Importance
-7            grammar         0.356698
-10     rule_of_three         0.268089
-12    eleg_variation         0.168448
-9    neg_parallelism         0.091797
-0             emdash         0.042238
-3         title_case         0.041245
-8              vocab         0.016024
-4               list         0.008095
-2               bold         0.003643
-13      subject_line         0.002006
-14           summary         0.001718
+7            grammar         0.353771
+12    eleg_variation         0.245780
+10     rule_of_three         0.201668
+9    neg_parallelism         0.085387
+3         title_case         0.030040
+0             emdash         0.026643
+4               list         0.016226
+11  basic_copulative         0.015517
+8              vocab         0.012346
+2               bold         0.010402
+13      subject_line         0.001783
+14           summary         0.000438
 1              emoji         0.000000
 5    curly_quotation         0.000000
 6           template         0.000000
-11  basic_copulative         0.000000
 
 ------------------------
 
@@ -283,30 +355,39 @@ AUROC:  1.00
 
 Ablated feature: template
 removing: template
-Accuracy:  0.99
+Accuracy:  1.00
 Precision: 1.00
-Recall:    0.99
-F1 Score:  0.99
+Recall:    1.00
+F1 Score:  1.00
 AUROC:  1.00
+              precision    recall  f1-score   support
+
+          AI       1.00      1.00      1.00        97
+           H       1.00      1.00      1.00        96
+
+    accuracy                           1.00       193
+   macro avg       1.00      1.00      1.00       193
+weighted avg       1.00      1.00      1.00       193
+
 
 ---Feature importance---
 
              Feature  Gini Importance
-7            grammar         0.430974
-10     rule_of_three         0.256816
-12    eleg_variation         0.124558
-9    neg_parallelism         0.079584
-0             emdash         0.047642
-3         title_case         0.034714
-4               list         0.011758
-8              vocab         0.006952
-2               bold         0.003643
-14           summary         0.001718
-13      subject_line         0.001641
-1              emoji         0.000000
+7            grammar         0.411491
+12    eleg_variation         0.214778
+10     rule_of_three         0.191605
+9    neg_parallelism         0.079459
+0             emdash         0.030243
+3         title_case         0.023235
+11  basic_copulative         0.018461
+4               list         0.014412
+2               bold         0.009647
+8              vocab         0.004647
+13      subject_line         0.001533
+14           summary         0.000438
+1              emoji         0.000051
 5    curly_quotation         0.000000
 6              table         0.000000
-11  basic_copulative         0.000000
 
 ------------------------
 
@@ -319,29 +400,38 @@ AUROC:  1.00
 Ablated feature: grammar
 removing: grammar
 Accuracy:  0.95
-Precision: 1.00
-Recall:    0.90
+Precision: 0.99
+Recall:    0.92
 F1 Score:  0.95
 AUROC:  0.99
+              precision    recall  f1-score   support
+
+          AI       0.92      0.99      0.95        90
+           H       0.99      0.92      0.95       103
+
+    accuracy                           0.95       193
+   macro avg       0.95      0.96      0.95       193
+weighted avg       0.96      0.95      0.95       193
+
 
 ---Feature importance---
 
              Feature  Gini Importance
-10     rule_of_three         0.389260
-12    eleg_variation         0.222782
-9    neg_parallelism         0.151877
-3         title_case         0.086970
-0             emdash         0.052709
-4               list         0.049045
-8              vocab         0.032906
-2               bold         0.006515
-14           summary         0.003859
-13      subject_line         0.003558
-1              emoji         0.000519
+12    eleg_variation         0.323517
+10     rule_of_three         0.289007
+9    neg_parallelism         0.163988
+3         title_case         0.056580
+4               list         0.051725
+0             emdash         0.040410
+11  basic_copulative         0.025811
+8              vocab         0.023063
+2               bold         0.021032
+13      subject_line         0.003781
+14           summary         0.001016
+1              emoji         0.000070
 5    curly_quotation         0.000000
 6              table         0.000000
 7           template         0.000000
-11  basic_copulative         0.000000
 
 ------------------------
 
@@ -358,25 +448,34 @@ Precision: 1.00
 Recall:    0.99
 F1 Score:  0.99
 AUROC:  1.00
+              precision    recall  f1-score   support
+
+          AI       0.99      1.00      0.99        96
+           H       1.00      0.99      0.99        97
+
+    accuracy                           0.99       193
+   macro avg       0.99      0.99      0.99       193
+weighted avg       0.99      0.99      0.99       193
+
 
 ---Feature importance---
 
              Feature  Gini Importance
-8            grammar         0.410908
-12    eleg_variation         0.199862
-10     rule_of_three         0.186123
-9    neg_parallelism         0.083802
-3         title_case         0.042538
-4               list         0.037897
-0             emdash         0.028970
-2               bold         0.003690
-14           summary         0.002976
-13      subject_line         0.002730
-1              emoji         0.000504
+8            grammar         0.492758
+12    eleg_variation         0.193034
+10     rule_of_three         0.140079
+9    neg_parallelism         0.068829
+3         title_case         0.032422
+4               list         0.029918
+0             emdash         0.022682
+2               bold         0.010751
+11  basic_copulative         0.009052
+14           summary         0.000425
+1              emoji         0.000050
 5    curly_quotation         0.000000
 6              table         0.000000
 7           template         0.000000
-11  basic_copulative         0.000000
+13      subject_line         0.000000
 
 ------------------------
 
@@ -393,25 +492,34 @@ Precision: 1.00
 Recall:    0.99
 F1 Score:  0.99
 AUROC:  1.00
+              precision    recall  f1-score   support
+
+          AI       0.99      1.00      0.99        96
+           H       1.00      0.99      0.99        97
+
+    accuracy                           0.99       193
+   macro avg       0.99      0.99      0.99       193
+weighted avg       0.99      0.99      0.99       193
+
 
 ---Feature importance---
 
              Feature  Gini Importance
-8            grammar         0.396077
-10     rule_of_three         0.209617
-12    eleg_variation         0.206645
-4               list         0.056151
-0             emdash         0.048262
-3         title_case         0.044177
-9              vocab         0.026451
-2               bold         0.004892
-14           summary         0.004492
-13      subject_line         0.002730
-1              emoji         0.000504
+8            grammar         0.518635
+12    eleg_variation         0.200536
+10     rule_of_three         0.149903
+4               list         0.044985
+3         title_case         0.027661
+0             emdash         0.021731
+9              vocab         0.019214
+2               bold         0.008790
+11  basic_copulative         0.008068
+14           summary         0.000425
+1              emoji         0.000051
 5    curly_quotation         0.000000
 6              table         0.000000
 7           template         0.000000
-11  basic_copulative         0.000000
+13      subject_line         0.000000
 
 ------------------------
 
@@ -428,25 +536,34 @@ Precision: 1.00
 Recall:    0.97
 F1 Score:  0.98
 AUROC:  1.00
+              precision    recall  f1-score   support
+
+          AI       0.97      1.00      0.98        94
+           H       1.00      0.97      0.98        99
+
+    accuracy                           0.98       193
+   macro avg       0.98      0.98      0.98       193
+weighted avg       0.98      0.98      0.98       193
+
 
 ---Feature importance---
 
              Feature  Gini Importance
-8            grammar         0.444591
-12    eleg_variation         0.237195
-10   neg_parallelism         0.101276
-4               list         0.077082
-0             emdash         0.047246
-3         title_case         0.044622
-9              vocab         0.034356
-14           summary         0.005415
-2               bold         0.004892
-13      subject_line         0.002230
-1              emoji         0.001095
+8            grammar         0.570532
+12    eleg_variation         0.220723
+10   neg_parallelism         0.065927
+4               list         0.051562
+3         title_case         0.030298
+0             emdash         0.021435
+9              vocab         0.020659
+11  basic_copulative         0.009211
+2               bold         0.009124
+14           summary         0.000423
+1              emoji         0.000106
 5    curly_quotation         0.000000
 6              table         0.000000
 7           template         0.000000
-11  basic_copulative         0.000000
+13      subject_line         0.000000
 
 ------------------------
 
@@ -458,30 +575,39 @@ AUROC:  1.00
 
 Ablated feature: basic_copulative
 removing: basic_copulative
-Accuracy:  0.98
+Accuracy:  0.99
 Precision: 1.00
-Recall:    0.97
-F1 Score:  0.98
+Recall:    0.99
+F1 Score:  0.99
 AUROC:  1.00
+              precision    recall  f1-score   support
+
+          AI       0.99      1.00      0.99        96
+           H       1.00      0.99      0.99        97
+
+    accuracy                           0.99       193
+   macro avg       0.99      0.99      0.99       193
+weighted avg       0.99      0.99      0.99       193
+
 
 ---Feature importance---
 
             Feature  Gini Importance
-8           grammar         0.418743
-12   eleg_variation         0.191684
-11    rule_of_three         0.140309
-10  neg_parallelism         0.075633
-4              list         0.064918
-3        title_case         0.038830
-0            emdash         0.036062
-9             vocab         0.022528
-2              bold         0.004892
-14          summary         0.004170
-13     subject_line         0.002230
-1             emoji         0.000000
-5   curly_quotation         0.000000
-6             table         0.000000
-7          template         0.000000
+8           grammar     5.146797e-01
+12   eleg_variation     1.905489e-01
+11    rule_of_three     1.092091e-01
+10  neg_parallelism     6.433399e-02
+4              list     4.473104e-02
+3        title_case     2.851481e-02
+0            emdash     1.991858e-02
+9             vocab     1.845278e-02
+2              bold     9.088019e-03
+14          summary     4.172442e-04
+1             emoji     1.057467e-04
+13     subject_line     1.122995e-08
+5   curly_quotation     0.000000e+00
+6             table     0.000000e+00
+7          template     0.000000e+00
 
 ------------------------
 
@@ -498,25 +624,34 @@ Precision: 1.00
 Recall:    0.99
 F1 Score:  0.99
 AUROC:  1.00
+              precision    recall  f1-score   support
+
+          AI       0.99      1.00      0.99        96
+           H       1.00      0.99      0.99        97
+
+    accuracy                           0.99       193
+   macro avg       0.99      0.99      0.99       193
+weighted avg       0.99      0.99      0.99       193
+
 
 ---Feature importance---
 
              Feature  Gini Importance
-8            grammar         0.522767
-11     rule_of_three         0.175096
-10   neg_parallelism         0.094630
-4               list         0.073444
-0             emdash         0.051960
-3         title_case         0.048058
-9              vocab         0.022364
-14           summary         0.005104
-2               bold         0.004101
-13      subject_line         0.002230
-7           template         0.000245
-1              emoji         0.000000
-5    curly_quotation         0.000000
-6              table         0.000000
-12  basic_copulative         0.000000
+8            grammar     5.338006e-01
+11     rule_of_three     1.755579e-01
+10   neg_parallelism     9.327229e-02
+4               list     6.708142e-02
+3         title_case     4.422264e-02
+12  basic_copulative     2.929096e-02
+0             emdash     2.453860e-02
+9              vocab     2.419916e-02
+2               bold     7.513425e-03
+14           summary     4.172442e-04
+1              emoji     1.057467e-04
+13      subject_line     1.122995e-08
+5    curly_quotation     0.000000e+00
+6              table     0.000000e+00
+7           template     0.000000e+00
 
 ------------------------
 
@@ -528,30 +663,39 @@ AUROC:  1.00
 
 Ablated feature: subject_line
 removing: subject_line
-Accuracy:  0.99
+Accuracy:  1.00
 Precision: 1.00
-Recall:    0.99
-F1 Score:  0.99
+Recall:    1.00
+F1 Score:  1.00
 AUROC:  1.00
+              precision    recall  f1-score   support
+
+          AI       1.00      1.00      1.00        97
+           H       1.00      1.00      1.00        96
+
+    accuracy                           1.00       193
+   macro avg       1.00      1.00      1.00       193
+weighted avg       1.00      1.00      1.00       193
+
 
 ---Feature importance---
 
              Feature  Gini Importance
-8            grammar         0.473284
-11     rule_of_three         0.171919
-13    eleg_variation         0.158970
-10   neg_parallelism         0.071482
-4               list         0.047436
-3         title_case         0.032219
-0             emdash         0.028582
-9              vocab         0.013491
-14           summary         0.001471
-2               bold         0.000903
-7           template         0.000245
-1              emoji         0.000000
+8            grammar         0.476698
+13    eleg_variation         0.204787
+11     rule_of_three         0.140910
+10   neg_parallelism         0.065685
+4               list         0.043204
+12  basic_copulative         0.023184
+3         title_case         0.020772
+9              vocab         0.016626
+0             emdash         0.005728
+2               bold         0.001932
+14           summary         0.000403
+1              emoji         0.000072
 5    curly_quotation         0.000000
 6              table         0.000000
-12  basic_copulative         0.000000
+7           template         0.000000
 
 ------------------------
 
@@ -563,30 +707,39 @@ AUROC:  1.00
 
 Ablated feature: summary
 removing: summary
-Accuracy:  0.99
+Accuracy:  1.00
 Precision: 1.00
-Recall:    0.99
-F1 Score:  0.99
+Recall:    1.00
+F1 Score:  1.00
 AUROC:  1.00
+              precision    recall  f1-score   support
+
+          AI       1.00      1.00      1.00        97
+           H       1.00      1.00      1.00        96
+
+    accuracy                           1.00       193
+   macro avg       1.00      1.00      1.00       193
+weighted avg       1.00      1.00      1.00       193
+
 
 ---Feature importance---
 
              Feature  Gini Importance
-8            grammar         0.473377
-11     rule_of_three         0.174256
-13    eleg_variation         0.156519
-10   neg_parallelism         0.069419
-4               list         0.047436
-3         title_case         0.036456
-0             emdash         0.030791
-9              vocab         0.009186
-14      subject_line         0.001658
-2               bold         0.000903
-1              emoji         0.000000
+8            grammar         0.481065
+13    eleg_variation         0.206089
+11     rule_of_three         0.139552
+10   neg_parallelism         0.063986
+4               list         0.043204
+12  basic_copulative         0.023198
+3         title_case         0.019392
+9              vocab         0.016606
+0             emdash         0.004712
+2               bold         0.001943
+14      subject_line         0.000180
+1              emoji         0.000072
 5    curly_quotation         0.000000
 6              table         0.000000
 7           template         0.000000
-12  basic_copulative         0.000000
 
 ------------------------
 

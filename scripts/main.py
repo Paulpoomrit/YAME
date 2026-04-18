@@ -9,6 +9,10 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import roc_curve, roc_auc_score
 import matplotlib.pyplot as plt
 import sys
+from sklearn.metrics import classification_report
+import pickle
+import csv
+
 
 data_path = 'data/now_data_subset/now_data_subset_w_features.tsv'
 feature_names = ["emdash",
@@ -29,9 +33,16 @@ feature_names = ["emdash",
                  "summary"
                  ]
 
+_result_fields = ['ablated_feature','accuracy', 'precision', 'recall', 'f1', 'auroc']
+_results_dict: list[dict[str, str]] = []
+
+_regression_fields = ['model', 'true_y', 'pred_y', 'correct']
+_regression_dict: list[dict[str, str]] = []
+
 
 def train_model(df: pd.DataFrame, ablated_feature: str):
 
+    result = {}
     feature_list = feature_names.copy()
 
     if ablated_feature in feature_list:
@@ -46,8 +57,19 @@ def train_model(df: pd.DataFrame, ablated_feature: str):
                                                         random_state=104,
                                                         shuffle=True)
 
+    # test = np.random.rand(*X_train.shape)
+    # X_train = test
+
     model = RandomForestClassifier(
-        n_estimators=30, max_leaf_nodes=5, max_depth=3, n_jobs=-1, random_state=42)
+        n_estimators=40,
+        max_features="log2",
+        max_leaf_nodes=5,
+        max_depth=10,
+        n_jobs=-1,
+        random_state=42,
+        min_samples_split=10
+        # criterion='entropy'
+        )
     model.fit(X_train, y_train)
 
     y_pred = model.predict(X_test)
@@ -62,6 +84,14 @@ def train_model(df: pd.DataFrame, ablated_feature: str):
     f1 = f1_score(y_test, y_pred, pos_label="AI")
     fpr, tpr, thresholds = roc_curve(y_test, y_pred_prob, pos_label="AI")
     roc_auc = roc_auc_score(y_test, y_pred_prob)
+
+    result['ablated_feature'] = ablated_feature
+    result['accuracy'] = accuracy
+    result['precision'] = precision
+    result['recall'] = recall
+    result['f1'] = f1
+    result['auroc'] = roc_auc
+    _results_dict.append(result)
 
     # Plot the ROC curve
     plt.plot(fpr, tpr, label='ROC curve (area = %0.2f)' % roc_auc)
@@ -91,6 +121,8 @@ def train_model(df: pd.DataFrame, ablated_feature: str):
     print(f"F1 Score:  {f1:.2f}")
     print(f"AUROC:  {roc_auc:.2f}")
 
+    print(classification_report(y_pred, y_test))
+
     print("\n---Feature importance---\n")
     importances = model.feature_importances_
     feature_imp_df = pd.DataFrame({'Feature': feature_list, 'Gini Importance': importances}).sort_values('Gini Importance', ascending=False)
@@ -108,6 +140,21 @@ def train_model(df: pd.DataFrame, ablated_feature: str):
         rounded=True,
         special_characters=True
     )
+
+    # Save full model
+    if (ablated_feature=="full"):
+        with open ('model/yame.pkl', 'wb') as f:
+            pickle.dump(model, f)
+
+    # Record data for regression
+    for i, true_y in enumerate(y_test):
+        # _regression_fields = ['model', 'true_y', 'pred_y', 'correct']
+        data_point = {}
+        data_point['model'] = ablated_feature
+        data_point['true_y'] = true_y
+        data_point['pred_y'] = y_pred[i]
+        data_point['correct'] = true_y == y_pred[i]
+        _regression_dict.append(data_point)
 
 
 def main():
@@ -128,5 +175,14 @@ def main():
             train_model(ablated_df, feature)
             print("\n----------------------------------------\n")
 
+        with open('results/eval.csv', 'w') as csvfile:
+            writer = csv.DictWriter(csvfile, fieldnames=_result_fields)
+            writer.writeheader()
+            writer.writerows(_results_dict)
+
+        with open('results/yame_ablation.csv', 'w') as csvfile:
+            writer = csv.DictWriter(csvfile, fieldnames=_regression_fields)
+            writer.writeheader()
+            writer.writerows(_regression_dict)
 
 main()

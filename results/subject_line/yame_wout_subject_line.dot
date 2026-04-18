@@ -1,17 +1,21 @@
 digraph Tree {
 node [shape=box, style="filled, rounded", color="black", fontname="helvetica"] ;
 edge [fontname="helvetica"] ;
-0 [label=<template &le; 0.003<br/>gini = 0.5<br/>samples = 277<br/>value = [227, 222]<br/>class = human>, fillcolor="#fefcfb"] ;
-1 [label=<rule_of_three &le; 0.036<br/>gini = 0.5<br/>samples = 276<br/>value = [225.0, 222.0]<br/>class = human>, fillcolor="#fffdfc"] ;
+0 [label=<basic_copulative &le; 0.006<br/>gini = 0.5<br/>samples = 277<br/>value = [227, 222]<br/>class = human>, fillcolor="#fefcfb"] ;
+1 [label=<gini = 0.229<br/>samples = 24<br/>value = [33, 5]<br/>class = human>, fillcolor="#e99457"] ;
 0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
-3 [label=<list &le; 0.008<br/>gini = 0.338<br/>samples = 177<br/>value = [61, 222]<br/>class = AI>, fillcolor="#6fb8ec"] ;
-1 -> 3 ;
-5 [label=<gini = 0.325<br/>samples = 174<br/>value = [57.0, 222.0]<br/>class = AI>, fillcolor="#6cb6ec"] ;
-3 -> 5 ;
-6 [label=<gini = 0.0<br/>samples = 3<br/>value = [4, 0]<br/>class = human>, fillcolor="#e58139"] ;
-3 -> 6 ;
-4 [label=<gini = 0.0<br/>samples = 99<br/>value = [164, 0]<br/>class = human>, fillcolor="#e58139"] ;
-1 -> 4 ;
-2 [label=<gini = 0.0<br/>samples = 1<br/>value = [2, 0]<br/>class = human>, fillcolor="#e58139"] ;
+2 [label=<list &le; 0.003<br/>gini = 0.498<br/>samples = 253<br/>value = [194, 217]<br/>class = AI>, fillcolor="#eaf5fc"] ;
 0 -> 2 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+3 [label=<vocab &le; 0.009<br/>gini = 0.479<br/>samples = 220<br/>value = [143, 217]<br/>class = AI>, fillcolor="#bbdef6"] ;
+2 -> 3 ;
+5 [label=<bold &le; 0.012<br/>gini = 0.456<br/>samples = 200<br/>value = [116, 214]<br/>class = AI>, fillcolor="#a4d2f3"] ;
+3 -> 5 ;
+7 [label=<gini = 0.452<br/>samples = 199<br/>value = [113, 214]<br/>class = AI>, fillcolor="#a2d1f3"] ;
+5 -> 7 ;
+8 [label=<gini = 0.0<br/>samples = 1<br/>value = [3, 0]<br/>class = human>, fillcolor="#e58139"] ;
+5 -> 8 ;
+6 [label=<gini = 0.18<br/>samples = 20<br/>value = [27, 3]<br/>class = human>, fillcolor="#e88f4f"] ;
+3 -> 6 ;
+4 [label=<gini = 0.0<br/>samples = 33<br/>value = [51, 0]<br/>class = human>, fillcolor="#e58139"] ;
+2 -> 4 ;
 }

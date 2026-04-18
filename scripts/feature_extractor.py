@@ -103,7 +103,7 @@ def negative_parallelism_ratio(text: str) -> float:
 def rule_of_three_ratio(text: str) -> float:
     """ Returns the ratio of sentences, giving three examples,
     divided by the total number of all sentences.
-    his is being extracted by considering the form
+    This is being extracted by considering the form
     that such a sentence usually presents itself in,
     that is, three words/phrases mediated by “,” in the middle. """
 
